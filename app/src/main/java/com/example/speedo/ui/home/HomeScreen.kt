@@ -38,6 +38,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.speedo.R
 import com.example.speedo.data.ServicesSource
 import com.example.speedo.data.TransactionsSource
@@ -56,7 +57,7 @@ import com.example.speedo.ui.theme.S400
 
 @Composable
 fun HomeScreen(
-//    navController: NavController,
+    navController: NavController,
     viewModel: HomeViewModel = HomeViewModel()
 ) {
     val scrollState = rememberScrollState()

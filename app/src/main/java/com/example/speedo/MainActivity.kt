@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import com.example.speedo.constants.AppNavHost
 import com.example.speedo.ui.home.HomeScreen
+import com.example.speedo.ui.navigation.HostScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -12,7 +14,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            HomeScreen()
+           AppNavHost()
             }
     }
 }
