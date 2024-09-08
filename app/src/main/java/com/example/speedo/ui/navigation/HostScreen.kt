@@ -32,14 +32,15 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.speedo.constants.AppRoutes.FAVOURITES_ROUTE
 import com.example.speedo.constants.AppRoutes.HOME_ROUTE
-import com.example.speedo.constants.AppRoutes.MORE_ROUTE
-import com.example.speedo.constants.AppRoutes.TRANSACTIONS_ROUTE
+import com.example.speedo.constants.AppRoutes.TRANSFER_ROUTE
 import com.example.speedo.data.BottomNavigationItemsSource
+import com.example.speedo.ui.favourite.FavouriteScreen
 import com.example.speedo.ui.home.HomeScreen
 import com.example.speedo.ui.theme.CosmicLatte
 import com.example.speedo.ui.theme.G200
 import com.example.speedo.ui.theme.P20
 import com.example.speedo.ui.theme.P300
+import com.example.speedo.ui.transfer.TransferScreen
 
 @Composable
 fun HostScreen(navController: NavHostController) {
@@ -107,9 +108,8 @@ bottomBar = {
             startDestination = HOME_ROUTE,
         ) {
             composable(HOME_ROUTE) { HomeScreen(navController)}
-//            composable(MORE_ROUTE) { MoreScreen(navController) }
-//            composable(FAVOURITES_ROUTE) { FavouriteScreen(navController) }
-//            composable(TRANSACTIONS_ROUTE) { TransactionsScreen(navController)}
+            composable(TRANSFER_ROUTE) { TransferScreen(navController) }
+            composable(FAVOURITES_ROUTE) { FavouriteScreen(navController) }
         }
     }
 }
