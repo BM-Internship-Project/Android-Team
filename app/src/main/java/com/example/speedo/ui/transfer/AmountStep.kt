@@ -81,14 +81,14 @@ fun AmountStep(onAmountEntered: (Double) -> Unit) {
         Spacer(modifier = Modifier.size(16.dp))
         Box(
             modifier = Modifier
-                .wrapContentSize()  // Fill the width instead of size to avoid clipping issues
-                .clip(RoundedCornerShape(8.dp))  // Adjust the radius as needed
-                .background(G0)  // Use your desired background color
+                .wrapContentSize()
+                .clip(RoundedCornerShape(8.dp))
+                .background(G0)
         ) {
             Column(
-                modifier = Modifier.padding(16.dp)  // Adjust padding inside the box as needed
+                modifier = Modifier.padding(16.dp)
             ) {
-                Text(text = "1 USD = 0.74 GBP", style = appTypography.bodyMedium)
+                Text(text = "1 USD = 48.5 EGP", style = appTypography.bodyMedium)
                 Spacer(modifier = Modifier.size(8.dp))
                 Text(text = "Rate guaranteed (2h)", style = appTypography.bodyMedium, color = G100)
                 Spacer(modifier = Modifier.size(8.dp))
@@ -176,7 +176,6 @@ fun AmountStep(onAmountEntered: (Double) -> Unit) {
             label = "Recipient Name",
             hint = "Enter Recipient Name",
             onValueChanged = { viewModel.onRecNameChange(it) },
-            iconDescription = "",
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -187,7 +186,6 @@ fun AmountStep(onAmountEntered: (Double) -> Unit) {
             label = "Recipient Account",
             hint = "Enter Recipient Account Number",
             onValueChanged = { viewModel.onRecAccountChange(it) },
-            iconDescription = "",
             modifier = Modifier.fillMaxWidth()
         )
 

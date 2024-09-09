@@ -28,7 +28,7 @@ class HomeViewModel : ViewModel() {
     }
 
     fun getInitials(): String{
-        val names = profile.initials.split(" ")
+        val names = profile.name.split(" ")
         val initials = names.map { it.first() }.joinToString("")
         return initials
     }

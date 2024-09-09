@@ -159,7 +159,7 @@ fun ScreenHeader(viewModel: HomeViewModel) {
                             fontSize = 16.sp
                         )
                     ) {
-                        append(viewModel.profile.initials)
+                        append(viewModel.profile.name)
                     }
                 }
             }

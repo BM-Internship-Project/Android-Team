@@ -189,6 +189,7 @@ fun PaymentStep(
                         Column(
                             verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top)
                         ) {
+                            //edit name and acc
                             Text(
                                 text = "Jonathon Smith",
                                 color = Color(0xff24221e),
