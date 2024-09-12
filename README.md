@@ -1,10 +1,11 @@
 # Speedo Money Transfer App #
 
-Speedo Transfer App is a mobile application that allows users to transfer and manage their bank accounts smoothly
+Speedo Transfer App is a mobile application that allows users to transfer and manage their bank accounts with a smooth flow and attractive ui
 
 # TECH STACK #
 
 - Android JetPackCompose
+
 - Additionally we used currency exchanges as an extra feature and a success notif upon transfer
 
 
