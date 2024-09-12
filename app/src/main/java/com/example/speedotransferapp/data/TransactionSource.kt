@@ -10,9 +10,9 @@ class TransactionsSource {
             add(
                 TransactionItem(
                     reference = 234567,
-                    recipientName = "John Doe",
+                    recipientName = "Laila Amr",
                     recipientDigits = "1234",
-                    dateTime = "Today 14:23",
+                    dateTime = "Today 00:23",
                     status = "Successful",
                     paymentProcessorIcon = R.drawable.mastercard,
                     paymentProcessor = "Mastercard",
@@ -22,7 +22,7 @@ class TransactionsSource {
             add(
                 TransactionItem(
                     reference = 234567,
-                    recipientName = "Alice Johnson",
+                    recipientName = "Smith Johnson",
                     recipientDigits = "5678",
                     dateTime = "Yesterday 09:45",
                     status = "Failed",
