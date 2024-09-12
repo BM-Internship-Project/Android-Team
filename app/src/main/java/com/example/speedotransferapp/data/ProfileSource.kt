@@ -6,6 +6,6 @@ import com.example.speedotransferapp.model.Profile
 
 class ProfileSource {
     fun getProfile() = Profile(
-        "laila", "amr",
+        "Eyad ", "Amr",
     )
 }
