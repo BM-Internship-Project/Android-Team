@@ -1,0 +1,136 @@
+package com.example.speedotransferapp.ui.navigation
+
+import androidx.compose.runtime.Composable
+import androidx.compose.foundation.background
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.example.speedotransferapp.constant.AppRoutes.CARDS_ROUTE
+import com.example.speedotransferapp.constant.AppRoutes.FAVOURITES_ROUTE
+import com.example.speedotransferapp.constant.AppRoutes.HOME_ROUTE
+import com.example.speedotransferapp.constant.AppRoutes.MORE_ROUTE
+import com.example.speedotransferapp.constant.AppRoutes.TRANSACTIONS_ROUTE
+import com.example.speedotransferapp.constant.AppRoutes.TRANSACTION_ROUTE
+import com.example.speedotransferapp.constant.AppRoutes.TRANSFER_ROUTE
+import com.example.speedotransferapp.data.BottomNavigationItemsSource
+import com.example.speedotransferapp.ui.favourite.FavouriteScreen
+import com.example.speedotransferapp.ui.home.HomeScreen
+import com.example.speedotransferapp.ui.more.MoreScreen
+import com.example.speedotransferapp.ui.theme.CosmicLatte
+import com.example.speedotransferapp.ui.theme.G200
+import com.example.speedotransferapp.ui.theme.P20
+import com.example.speedotransferapp.ui.theme.P300
+import com.example.speedotransferapp.ui.transaction.TransactionScreen
+import com.example.speedotransferapp.ui.transactions.TransactionsScreen
+import com.example.speedotransferapp.ui.transfer.TransferScreen
+import androidx.lifecycle.viewmodel.compose.viewModel as viewModel1
+
+@Composable
+fun HostScreen(onLogout: () -> Unit) {
+
+    val viewModel: HostViewModel = viewModel1()
+    val navController = rememberNavController()
+    Scaffold(
+        bottomBar = {
+            NavigationBar(
+                containerColor = Color.White,
+                modifier = Modifier.clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp))
+            ) {
+                Spacer(modifier = Modifier.padding(1.dp))
+
+                val navBackStackEntry by navController.currentBackStackEntryAsState()
+                val currentRoute = navBackStackEntry?.destination?.route
+
+                LaunchedEffect(currentRoute) {
+                    viewModel.updateItemIndex(currentRoute)
+                }
+
+                val destinations = BottomNavigationItemsSource().get()
+                destinations.forEachIndexed { index, item ->
+                    NavigationBarItem(
+                        selected = viewModel.selectedItemIndex == index,
+                        onClick = {
+                            viewModel.setItemIndex(index)
+                            navController.navigate(item.route)
+                        },
+                        label = {
+                            Text(
+                                text = item.label,
+                                color = if (viewModel.selectedItemIndex == index) P300 else G200,
+                                fontSize = 9.sp
+                            )
+                        },
+                        icon = {
+                            Icon(
+                                imageVector = ImageVector.vectorResource(id = item.icon),
+                                contentDescription = item.label,
+                                modifier = Modifier.size(24.dp),
+                                tint = if (viewModel.selectedItemIndex == index) P300 else G200
+                            )
+                        },
+                        interactionSource = MutableInteractionSource(),
+                        colors = NavigationBarItemDefaults.colors(
+                            indicatorColor = Color.Transparent
+                        )
+                    )
+                }
+                Spacer(modifier = Modifier.padding(1.dp))
+            }
+        }) { innerPadding ->
+        Box(
+            modifier = Modifier
+                .background(
+                    brush = Brush.verticalGradient(
+                        colors = listOf(CosmicLatte, P20)
+                    )
+                )
+                .padding(innerPadding)
+        ) {
+            NavHost(
+                navController = navController,
+                startDestination = HOME_ROUTE,
+            ) {
+                composable(HOME_ROUTE) { HomeScreen(navController) }
+                composable(CARDS_ROUTE){}
+                composable(TRANSFER_ROUTE) { TransferScreen(navController) }
+                composable(MORE_ROUTE) { MoreScreen(navController) }
+                composable(FAVOURITES_ROUTE) { FavouriteScreen(navController) }
+                composable(TRANSACTIONS_ROUTE) { TransactionsScreen(navController) }
+                composable(
+                    route = "$TRANSACTION_ROUTE/{transactionId}",
+                    arguments = listOf(navArgument(name = "transactionId") {
+                        type = NavType.LongType
+                    })
+                ) {
+                    val id = it.arguments!!.getLong("transactionId")
+                    TransactionScreen(navController = navController, id)
+                }
+            }
+        }
+    }
+}

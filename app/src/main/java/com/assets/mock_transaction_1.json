@@ -1,0 +1,25 @@
+
+{
+"id": 16,
+"timestamp": "2024-09-09T15:39:37.317109",
+"senderAccount": {
+"id": 1,
+"accountNumber": "0890675435",
+"name": "Youssef",
+"email": "yous23sef1@gmail.com",
+"password": "$2a$10$ALZGvLbcGuV4V0MN4IBaC.TzMZMMvBQYU9Jnoh7dVmeUbm6f1IZie",
+"country": "EG",
+"dateOfBirth": "2002-09-29",
+"balance": 75757.26
+},
+"receiverAccount": {
+"id": 2,
+"accountNumber": "0885046833",
+"name": "Youssef",
+"email": "yous23sef12@gmail.com",
+"password": "$2a$10$N8YG3mwrDyYMrhdbD.KISu0KoikaUf4f3qamPnRaQWXpKMbMnYkfS",
+"country": "EG",
+"dateOfBirth": "2002-09-29",
+"balance": 74490.75
+},
+"amount": 90.00
