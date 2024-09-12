@@ -34,13 +34,10 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.speedotransferapp.R
 import com.example.speedotransferapp.constant.AppRoutes.TRANSACTION_ROUTE
-import com.example.speedotransferapp.model.TransactionItem
 import com.example.speedotransferapp.ui.common.Header
 import com.example.speedotransferapp.ui.theme.G0
 import com.example.speedotransferapp.ui.theme.G100
@@ -49,7 +46,7 @@ import com.example.speedotransferapp.ui.theme.G700
 import com.example.speedotransferapp.ui.theme.G900
 import com.example.speedotransferapp.ui.theme.P300
 import com.example.speedotransferapp.ui.theme.P50
-import com.example.speedotransferapp.ui_model.Transaction
+import com.example.speedotransferapp.ui_model.TransactionItem
 
 @Composable
 fun TransactionsScreen(
@@ -130,7 +127,7 @@ fun TransactionCard(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = transaction.senderName,
+                    text = "Eyad amr",
                     fontWeight = FontWeight.Medium,
                     fontSize = 18.sp,
                     lineHeight = 3.sp,

@@ -16,8 +16,7 @@ import com.example.speedotransferapp.mapper.ProfileMapper.mapToView
 import com.example.speedotransferapp.mapper.TransactionMapper
 import com.example.speedotransferapp.model.BalanceResponse
 import com.example.speedotransferapp.model.Profile
-import com.example.speedotransferapp.model.TransactionItem
-import com.example.speedotransferapp.ui_model.Transaction
+import com.example.speedotransferapp.ui_model.TransactionItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -34,7 +33,7 @@ class HomeViewModel : ViewModel() {
 
     init {
         viewModelScope.launch {
-            _transactions.value = Transactions().getTransactions()
+            _transactions.value = TransactionsSource().getTransactions()
         }
     }
 

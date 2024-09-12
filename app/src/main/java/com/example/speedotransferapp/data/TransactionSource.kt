@@ -1,16 +1,14 @@
 package com.example.speedotransferapp.data
 
-
 import com.example.speedotransferapp.R
-import com.example.speedotransferapp.model.TransactionItem
-import com.example.speedotransferapp.ui_model.Transaction
-
+import com.example.speedotransferapp.ui_model.TransactionItem
 
 class TransactionsSource {
-    fun getTransactions(): List<Transaction> {
-        return mutableListOf<Transaction>().apply {
+
+    fun getTransactions(): List<TransactionItem> {
+        return mutableListOf<TransactionItem>().apply {
             add(
-                Transaction(
+                TransactionItem(
                     reference = 234567,
                     recipientName = "John Doe",
                     recipientDigits = "1234",
@@ -22,7 +20,7 @@ class TransactionsSource {
                 )
             )
             add(
-                Transaction(
+                TransactionItem(
                     reference = 234567,
                     recipientName = "Alice Johnson",
                     recipientDigits = "5678",
@@ -34,7 +32,7 @@ class TransactionsSource {
                 )
             )
             add(
-                Transaction(
+                TransactionItem(
                     reference = 2345672,
                     recipientName = "Chris Evans",
                     recipientDigits = "8765",
@@ -46,7 +44,7 @@ class TransactionsSource {
                 )
             )
             add(
-                Transaction(
+                TransactionItem(
                     reference = 2345637,
                     recipientName = "Diana Prince",
                     recipientDigits = "4321",
@@ -58,7 +56,7 @@ class TransactionsSource {
                 )
             )
             add(
-                Transaction(
+                TransactionItem(
                     reference = 2345367,
                     recipientName = "Bruce Wayne",
                     recipientDigits = "1234",
@@ -70,7 +68,7 @@ class TransactionsSource {
                 )
             )
             add(
-                Transaction(
+                TransactionItem(
                     reference = 2341567,
                     recipientName = "Peter Parker",
                     recipientDigits = "5678",
@@ -82,7 +80,7 @@ class TransactionsSource {
                 )
             )
             add(
-                Transaction(
+                TransactionItem(
                     reference = 2343567,
                     recipientName = "Tony Stark",
                     recipientDigits = "8765",
@@ -95,8 +93,8 @@ class TransactionsSource {
             )
         }
     }
-    fun getRecentTransactions(): List<Transaction> {
+
+    fun getRecentTransactions(): List<TransactionItem> {
         return getTransactions().take(3)
     }
 }
-

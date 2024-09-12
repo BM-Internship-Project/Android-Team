@@ -52,6 +52,7 @@ import com.example.speedotransferapp.ui.theme.G900
 import com.example.speedotransferapp.ui.theme.P300
 import com.example.speedotransferapp.ui.theme.P50
 import com.example.speedotransferapp.ui.theme.S400
+import com.example.speedotransferapp.ui_model.TransactionItem
 
 @Composable
 fun HomeScreen(
@@ -268,7 +269,7 @@ fun TransactionList() {
                                 modifier = Modifier.fillMaxWidth()
                             ) {
                                 Text(
-                                    text = transaction.cardHolderName,
+                                    text = "Eyad amr",
                                     color = G900,
                                     fontWeight = FontWeight.Medium
                                 )
@@ -280,7 +281,7 @@ fun TransactionList() {
                                 )
                             }
                             Text(
-                                text = transaction.cardType + " . " + transaction.lastFourDigits,
+                                text = "master card" + " . " + 4456,
                                 color = G700
                             )
                             Text(
