@@ -53,7 +53,7 @@ import com.example.speedotransferapp.ui.theme.P300
 @Composable
 fun ProfileScreen(
     navController: NavController,
-    viewModel: SignUpViewModel = SignUpViewModel(),
+    viewModel: ProfileScreenViewModel = ProfileScreenViewModel(),
     modifier: Modifier = Modifier
 ) {
     val fullName by viewModel.fullName.collectAsState()
