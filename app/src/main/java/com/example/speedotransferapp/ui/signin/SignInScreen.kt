@@ -38,23 +38,12 @@ import kotlinx.coroutines.launch
 fun SignInScreen(
     navController: NavController,
     viewModel: SignInViewModel = SignInViewModel(),
-    onLoginSuccess: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val context = LocalContext.current
-
-    viewModel.loadSignInDetails(context)
     val email by viewModel.email.collectAsState()
     val password by viewModel.password.collectAsState()
-    val loginResult by viewModel.loginResult.collectAsState()
+    var isPassError: Boolean = false
     val view_model = remember { CommonComposableViewModel() }
-    val snackbarHostState = remember { SnackbarHostState() }
-    val coroutineScope = rememberCoroutineScope()
-    var token = viewModel.loadToken(context)
-    val sharedPreferences = context.getSharedPreferences("sign_up_data", Context.MODE_PRIVATE)
-    val editor = sharedPreferences.edit()
-
-
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
@@ -78,24 +67,8 @@ fun SignInScreen(
                 )
             )
         },
-        containerColor = Color.Transparent,
-        snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
+        containerColor = Color.Transparent
     ) { innerPadding ->
-
-        LaunchedEffect(loginResult) {
-            Log.d("SignInScreen", "loginResult: $loginResult")
-            loginResult?.let {
-                if (it.isSuccess) {
-                    onLoginSuccess()
-                } else {
-                    coroutineScope.launch {
-                        snackbarHostState.showSnackbar(
-                            message = it.exceptionOrNull()?.message ?: "Login failed"
-                        )
-                    }
-                }
-            }
-        }
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -103,6 +76,7 @@ fun SignInScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(innerPadding)
+
         ) {
             SpeedoTransferText()
             Spacer(modifier = Modifier.padding(8.dp))
@@ -112,36 +86,23 @@ fun SignInScreen(
                 fieldId = "email",
                 label = "Email",
                 hint = "Enter your email address",
-                onValueChanged = {
-                    viewModel.setEmail(it)
-                    editor.putString("email", email)
-                    editor.apply()
-                },
-                trailingIcon = R.drawable.email
+                onValueChanged = { viewModel.setEmail(it) },
+                trailingIcon = R.drawable.email,
             )
             Spacer(modifier = Modifier.padding(8.dp))
-            val isPassError = InputField(
+            isPassError = InputField(
                 viewModel = view_model,
                 value = password,
-                fieldId = "password_signin",
+                fieldId = "password",
                 label = "Password",
                 hint = "Enter your password",
-                onValueChanged = {
-                    viewModel.setPassword(it)
-                    editor.putString("password", password)
-                    editor.apply()
-                },
+                onValueChanged = { viewModel.setPassword(it) },
                 isPassword = true,
-                trailingIcon = R.drawable.close_eye
+                trailingIcon = R.drawable.close_eye,
             )
             Spacer(modifier = Modifier.padding(8.dp))
             Button(
-                onClick = {
-                    viewModel.loginUser(context)
-                   // Log.d("SignInScreen", "token: $token")
-                    navController.navigate(AppRoutes.HOME_ROUTE)
-
-                },
+                onClick = { navController.navigate(AppRoutes.HOME_ROUTE) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
@@ -149,6 +110,7 @@ fun SignInScreen(
                 shape = RoundedCornerShape(6.dp),
                 contentPadding = PaddingValues(16.dp),
                 enabled = email.isNotBlank() && (password.isNotBlank() || !isPassError)
+
             ) {
                 Log.d("SignInScreen", "isPassError: $isPassError")
                 Text(
@@ -159,6 +121,7 @@ fun SignInScreen(
                         fontWeight = FontWeight.Bold
                     )
                 )
+
             }
             Spacer(modifier = Modifier.padding(8.dp))
             Row(
@@ -191,5 +154,5 @@ fun SignInScreen(
 @Preview(showBackground = true)
 @Composable
 private fun SignInScreenPreview() {
-    //SignInScreen(SignInViewModel(UserSource()))
+    //SignInScreen(SignInViewModel())
 }

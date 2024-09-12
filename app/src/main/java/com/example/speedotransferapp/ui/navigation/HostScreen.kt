@@ -51,7 +51,7 @@ import com.example.speedotransferapp.ui.transfer.TransferScreen
 import androidx.lifecycle.viewmodel.compose.viewModel as viewModel1
 
 @Composable
-fun HostScreen(onLogout: () -> Unit) {
+fun HostScreen() {
 
     val viewModel: HostViewModel = viewModel1()
     val navController = rememberNavController()

@@ -1,22 +1,9 @@
 package com.example.speedotransferapp.constant
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.speedotransferapp.constant.AppRoutes.LANDINGS_ROUTE
-import com.example.speedotransferapp.constant.AppRoutes.EXTRA_SIGN_UP_ROUTE
-import com.example.speedotransferapp.constant.AppRoutes.HOME_ROUTE
-import com.example.speedotransferapp.constant.AppRoutes.SIGN_IN_ROUTE
-import com.example.speedotransferapp.constant.AppRoutes.SIGN_UP_ROUTE
-import com.example.speedotransferapp.ui.common.LoadingScreen
-import com.example.speedotransferapp.database.User
 import com.example.speedotransferapp.ui.landing.LandingPageScreen
 import com.example.speedotransferapp.ui.navigation.HostScreen
 import com.example.speedotransferapp.ui.signin.SignInScreen
@@ -25,11 +12,9 @@ import com.example.speedotransferapp.ui.signup.SignUpScreen
 //import com.ys.speedotransferapp.ui.transfer.AmountStep
 //import com.ys.speedotransferapp.ui.transfer.ConfirmationStep
 //import com.ys.speedotransferapp.ui.transfer.PaymentStep
-import kotlinx.coroutines.launch
 
 
-
-    object AppRoutes {
+object AppRoutes {
         const val HOME_ROUTE = "home"
         const val TRANSFER_ROUTE = "transfer"
         const val TRANSACTIONS_ROUTE = "transactions"
@@ -46,56 +31,25 @@ import kotlinx.coroutines.launch
         const val PAYMENT_STEP_ROUTE = "payment step"
     }
 
-    @Composable
-    fun AppNavHost() {
-        val navController = rememberNavController()
-        val context = LocalContext.current
-        val scope = rememberCoroutineScope()
-        var isLoggedIn by remember { mutableStateOf<Boolean?>(null) }
-
-        LaunchedEffect(Unit) {
-            scope.launch {
-                User.isLoggedIn(context).collect { loggedIn: Boolean ->
-                    isLoggedIn = loggedIn
-                }
-            }
+@Composable
+fun AppNavHost() {
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = LANDINGS_ROUTE){
+        composable(route = LANDINGS_ROUTE){
+            LandingPageScreen(navController)
         }
-        when (isLoggedIn) {
-            null -> LoadingScreen()
-            else -> NavHost(
-                navController = navController,
-                startDestination = if (isLoggedIn == true) HOME_ROUTE else SIGN_IN_ROUTE
-            ) {
-                composable(route = LANDINGS_ROUTE) {
-                    LandingPageScreen(navController)
-                }
-                composable(route = SIGN_UP_ROUTE) {
-                    SignUpScreen(navController)
-                }
-                composable(route = EXTRA_SIGN_UP_ROUTE) {
-                    ExtraSignUpScreen(navController)
-                }
-                composable(route = SIGN_IN_ROUTE) {
-                    SignInScreen(navController, onLoginSuccess = {
-                        scope.launch {
-                            User.setLoggedIn(context, true)
-                        }
-                        navController.navigate(HOME_ROUTE) {
-                            popUpTo(LANDINGS_ROUTE) { inclusive = true }
-                        }
-                    })
-                }
-                composable(route = HOME_ROUTE) {
-                    HostScreen(onLogout = {
-                        scope.launch {
-                            User.setLoggedIn(context, false)
-                        }
-                        navController.navigate(SIGN_IN_ROUTE) {
-                            popUpTo(HOME_ROUTE) { inclusive = true }
-                        }
-                    })
-                }
+        composable(route = AppRoutes.SIGN_UP_ROUTE){
+            SignUpScreen(navController)
+        }
+        composable(route = AppRoutes.EXTRA_SIGN_UP_ROUTE){
+            ExtraSignUpScreen(navController)
+        }
+        composable(route = AppRoutes.SIGN_IN_ROUTE){
+            SignInScreen(navController)
+        }
 
-            }
+        composable(route = AppRoutes.HOME_ROUTE){
+            HostScreen()
         }
     }
+}
