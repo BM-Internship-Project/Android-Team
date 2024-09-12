@@ -15,18 +15,18 @@ class FavouritesSource {
             add(
                 FavouriteItem(
                     name = "Eyad Amr",
-                    accountNumber = "59865678"
+                    accountNumber = "59885678"
                 )
             )
             add(
                 FavouriteItem(
-                    name = "John Doe",
+                    name = "Ghada Kamal",
                     accountNumber = "542959101"
                 )
             )
             add(
                 FavouriteItem(
-                    name = "Jane Smith",
+                    name = "Smith John",
                     accountNumber = "82811121"
                 )
             )
