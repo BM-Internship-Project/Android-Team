@@ -5,6 +5,7 @@ Speedo Transfer App is a mobile application that allows users to transfer and ma
 # TECH STACK #
 
 - Android JetPackCompose
+- Additionally we used currency exchanges as an extra feature and a success notif upon transfer
 
 
 
