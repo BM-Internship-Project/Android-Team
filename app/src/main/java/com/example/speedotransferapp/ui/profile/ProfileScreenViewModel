@@ -24,6 +24,7 @@ import java.io.IOException
 
 class ProfileScreenViewModel : ViewModel() {
 
+
     var showHelpBottomShe by mutableStateOf(false)
         private set
 
@@ -37,7 +38,7 @@ class ProfileScreenViewModel : ViewModel() {
         editor.remove("token")
         editor.apply()
     }
-    class ProfileScreenViewModel : ViewModel() {
+
         private val _fullName = MutableStateFlow("")
         val fullName: StateFlow<String> = _fullName.asStateFlow()
 
@@ -188,4 +189,3 @@ class ProfileScreenViewModel : ViewModel() {
             return sharedPreferences.getString("token", null)
         }
     }
-}
