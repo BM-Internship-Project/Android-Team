@@ -10,13 +10,13 @@ object TransactionAPIService {
     private const val BASE_URL = "https://documenter.getpostman.com/view/31979113/2sAXjSyoUB"
 
     private val client: OkHttpClient = OkHttpClient.Builder()
-        .addInterceptor(TransactionInterceptor()) // Add the interceptor
+        .addInterceptor(TransactionInterceptor()) 
         .build()
 
     private val retrofit = Retrofit
         .Builder()
         .baseUrl(BASE_URL)
-        .client(client) //remove later
+        .client(client) 
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
