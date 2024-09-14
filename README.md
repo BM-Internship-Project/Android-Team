@@ -5,27 +5,25 @@ Speedo Transfer App is a mobile application that allows users to create a profil
 Our final work is in the develop branch includes most ( not all ) of the user stories
 
 # PREREQUISTES # 
-- Android koala
+- Android koala using Android JetPackCompose
 - Git Version Control
 
 # FEATURES #
-- Intuitive UI screens for each feature
+- Intuitive UI screens for each feature with a smooth flow of activities
 - Sign Up + Login
 - View past transactions history
 - Track Account Balance
 - Transfer money
-- Choice of currency ( including currency exchange )
+- Choice of currency ( including currency exchange ) * extra *
 - Notification channel after successful transfer
 - Review past transactions history
-- Add to favourite
+- Favourites management ( View , Add & Delete )
 - Call + Email for customer support
 - Review personal info 
 
 
-# TECH #
-
-- Android JetPackCompose
-- MVVM
+# ARCHITECTURE #
+Speedo Money Transfer app was implemented using clean MVVM architecture which is also including Feature-Based Modularization 
 
 
 # AVAILABLE UI SCREENS FOR PREVIEW #
