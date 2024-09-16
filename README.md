@@ -10,7 +10,8 @@ Our final work is in the develop branch which includes most ( not all ) of the u
 
 # FEATURES #
 - Intuitive UI screens for each feature with a smooth flow of activities
-- Sign Up + Login
+- Onboarding: Introduces the app's main features to new users.
+- User Authentication: Login + register
 - View past transactions history
 - Track Account Balance
 - Transfer money securely and instantly 
