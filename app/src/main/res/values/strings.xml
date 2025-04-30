@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">speedo</string>
+    <string name="current_balance">Current Balance</string>
+</resources>
